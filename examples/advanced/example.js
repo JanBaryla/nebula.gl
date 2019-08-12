@@ -63,13 +63,13 @@ const styles = {
 };
 
 const initialViewport = {
-  bearing: 0,
-  height: 0,
-  latitude: 37.76,
-  longitude: -122.44,
-  pitch: 0,
   width: 0,
-  zoom: 11
+  height: 0,
+  latitude: 37.748,
+  longitude: -122.58251738638081,
+  pitch: 0,
+  zoom: 12.757176914321594,
+  bearing: 0
 };
 
 const ALL_MODES = [
@@ -112,7 +112,39 @@ const POLYGON_DRAWING_MODES = [
 
 const EMPTY_FEATURE_COLLECTION = {
   type: 'FeatureCollection',
-  features: []
+  features: [
+    {
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [-122.60469970345487, 37.76856847678207],
+            [-122.64303249359124, 37.7325035650208],
+            [-122.59835896134365, 37.73197854238686],
+            [-122.60469970345487, 37.76856847678207]
+          ]
+        ]
+      }
+    },
+    {
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [-122.57754904270163, 37.7658078435848, 0],
+            [-122.58119927956021, 37.74863360802189, 1163.1673779935506],
+            [-122.58458850026123, 37.73268387496557, 0],
+            [-122.55148199439039, 37.72927912481997, 0],
+            [-122.57754904270163, 37.7658078435848, 0]
+          ]
+        ]
+      }
+    }
+  ]
 };
 
 const modeHandlers = Object.assign(
@@ -187,10 +219,10 @@ export default class Example extends Component<
     this.state = {
       viewport: initialViewport,
       testFeatures: EMPTY_FEATURE_COLLECTION,
-      mode: 'drawPolygon',
+      mode: 'modify',
       modeConfig: null,
       pointsRemovable: true,
-      selectedFeatureIndexes: [],
+      selectedFeatureIndexes: [1],
       editHandleType: 'point',
       selectionTool: null,
       showGeoJson: false,
