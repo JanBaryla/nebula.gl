@@ -112,7 +112,7 @@ export function nearestPointOnProjectedLine(
   const coordinates: Array<Array<number>> = (line.geometry.coordinates: any);
   const projectedCoords = coordinates.map(([x, y, z = 0]) => wmViewport.project([x, y, z]));
   const [x, y] = wmViewport.project(inPoint.geometry.coordinates);
-  // console.log('projectedCoords', JSON.stringify(projectedCoords));
+  console.log('projectedCoords', JSON.stringify(projectedCoords));
 
   let minDistance = Infinity;
   let minPointInfo = {};
