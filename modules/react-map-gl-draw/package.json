@@ -47,5 +47,8 @@
     "react": "0.14.x - 16.x",
     "react-dom": "0.14.x - 16.x",
     "react-map-gl": ">=4.0.0"
+  },
+  "resoulutions": {
+    "@turf/difference": "6.0.1"
   }
 }
