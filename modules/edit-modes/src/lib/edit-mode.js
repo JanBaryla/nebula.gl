@@ -25,3 +25,7 @@ export interface EditMode<TData, TGuides> {
   // Return features that can be used as a guide for editing the data
   getGuides(props: ModeProps<TData>): TGuides;
 }
+
+export function doNothing() {
+  return null;
+}
