@@ -278,4 +278,8 @@ export class ModifyMode extends BaseGeoJsonEditMode {
     }
     return null;
   }
+
+  sayHi(name: string) {
+    return `yo ${name}!`;
+  }
 }
