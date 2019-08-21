@@ -4,6 +4,7 @@ import { MjolnirEvent } from 'mjolnir.js';
 import type { Position, Feature as GeoJson } from '@nebula.gl/edit-modes';
 import { _MapContext as MapContext } from 'react-map-gl';
 import uuid from 'uuid';
+import circleToPolygon from 'circle-to-polygon';
 
 import Feature from './feature';
 import type { Id, ScreenCoordinates, Operation, RenderType } from './types';
@@ -268,6 +269,22 @@ export default class Editor extends PureComponent<EditorProps, EditorState> {
       type,
       renderType
     });
+
+    if (mode === MODES.DRAW_5MILE_CIRCLE || mode === MODES.DRAW_3MILE_CIRCLE) {
+      const radius = mode === MODES.DRAW_5MILE_CIRCLE ? 8046.72 : 4828.032;
+      feature.isClosed = true;
+      const polygon = circleToPolygon(this._unproject([point.x, point.y]), radius, 36);
+      let newFirstPoint: Array<number> = [polygon.coordinates[0][0][0], polygon.coordinates[0][0][1]];
+      newFirstPoint = this._project(newFirstPoint);
+      this._addPoint(newFirstPoint[0], newFirstPoint[1], feature, true);
+      for (let i = 1; i < polygon.coordinates[0].length; i++) {
+        let newPoint: Array<number> = [polygon.coordinates[0][i][0], polygon.coordinates[0][i][1]];
+        newPoint = this._project(newPoint);
+        this._addPoint(newPoint[0], newPoint[1], feature, false);
+      }
+      this._update(this.state.features);
+      return;
+    }
 
     this._addPoint(point.x, point.y, feature, true);
 
@@ -553,7 +570,10 @@ export default class Editor extends PureComponent<EditorProps, EditorState> {
         break;
 
       case MODES.DRAW_POINT:
+      case MODES.DRAW_5MILE_CIRCLE:
+      case MODES.DRAW_3MILE_CIRCLE:
         this._addFeature(mode, { x, y });
+        this._clearCache();
         break;
 
       case MODES.DRAW_PATH:

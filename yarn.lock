@@ -3447,6 +3447,11 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
+circle-to-polygon@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/circle-to-polygon/-/circle-to-polygon-1.0.2.tgz#48e9079e6e96cf34d183ff314039de6a59f60a60"
+  integrity sha512-JuGRbis6++Emc4IAKzQjhq/ltRQ2F1mn1YsQaabYhHeWx8nSRBOevMc/Tf4W7+WFOLl8GbTvcX6+k2p9swxWVg==
+
 circular-json@^0.3.1:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.3.tgz#815c99ea84f6809529d2f45791bdf82711352d66"
